@@ -16,7 +16,6 @@ $(function(){
 	});
 
 	function formSubmit(e) { 
-		console.log('sadsad');
 		e.preventDefault();
 		var $inputBox = $('#messagetxt');
 		socket.emit('chatMessage', {'message':$inputBox.val()});
@@ -32,6 +31,7 @@ $(function(){
 		var messageLength = $(this).val().length;
 		if(messageLength == 50){
 			maxLimitReached = true;
+			$('#submitbtn').addClass('disabled');
 			$('#infoBox').text('Max character limit reached : 50');
 			$('#infoBox').slideDown();
 			$('#infoBox').on('click',function(){
@@ -41,6 +41,7 @@ $(function(){
 		}
 		else{
 			maxLimitReached = false;
+			$('#submitbtn').removeClass('disabled');
 			$('#infoBox').slideUp();
 			$('#mainForm').on('submit', formSubmit);
 		}
