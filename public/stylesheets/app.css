@@ -1,0 +1,59 @@
+
+
+body{
+	background:#111;
+	color:#DDD;
+	margin:0px; padding:0px;
+}
+
+#wrap{
+	width:800px;
+	margin:0px auto; padding:0px;
+}
+
+#messageList{
+	list-style:none;
+	padding:5px; margin:5px;
+}
+
+.message{
+	padding:5px;
+	border:1px solid #777;
+	margin-bottom:2px;
+}
+
+.message:nth-child(even){
+	background:#444;
+	color:#999;
+}
+
+.message:nth-child(odd){
+	background:#333;
+	color:#aaa;
+}
+
+#wrap p{
+	padding:10px;
+	margin-bottom:5px;
+}
+
+#wrap p label{
+	font-size:20px;
+	font-family:'Verdana';
+	color:#EEE;
+}
+
+#wrap p input{
+	background:#222;
+	color:#aaa;
+	border:1px solid #eee;
+	width:60%;
+	padding:5px;
+}
+
+#submitbtn{
+	padding:5px;
+	background:#222;
+	color:#ddd;
+	border:1px solid #999;
+}
