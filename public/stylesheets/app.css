@@ -34,6 +34,7 @@ body{
 
 #wrap p{
 	padding:10px;
+	margin:5px auto;
 	margin-bottom:5px;
 }
 
@@ -64,12 +65,14 @@ body{
 
 #infoBox{
 	height:20px;
-	background:#3a64cd;
-	color:#cdb46a;
+	background:#141f3f;
+	color:#e5e5e5;
 	border:1px dotted #474b80;
 	display:block;
 	-webkit-border-radius:2px;
 	text-align:center;
+	font-size:12px;
+	font-family:verdana;
 }
 
 
