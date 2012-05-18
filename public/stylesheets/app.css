@@ -43,7 +43,7 @@ body{
 	color:#EEE;
 }
 
-#wrap p input{
+#wrap p input[type=text]{
 	background:#222;
 	color:#aaa;
 	border:1px solid #eee;
@@ -57,3 +57,22 @@ body{
 	color:#ddd;
 	border:1px solid #999;
 }
+
+#mainForm{
+	position:relative;
+}
+
+#infoBox{
+	height:20px;
+	background:#3a64cd;
+	color:#cdb46a;
+	border:1px dotted #474b80;
+	display:block;
+	-webkit-border-radius:2px;
+	text-align:center;
+}
+
+
+
+
+

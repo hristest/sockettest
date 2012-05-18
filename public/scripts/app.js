@@ -2,14 +2,43 @@
 
 $(function(){
 
-	var socket = io.connect('http://10.8.0.21:8000');
+	var socket = io.connect('http://localhost:8000');
 
-	$('#submitbtn').on('click',function(){
-		socket.emit('chatMessage', {'message':$('#messagetxt').val()});
-	});
+	$('#infoBox').hide();
 
 	socket.on('chatMessage', function(data){
-		$('#messageList').prepend($('<li>',{ 'text':data.message, class:'message'}));
+		var messageLength = data.message.length;
+
+		if(messageLength > 0 && messageLength < 10){
+			$('#messageList').prepend($('<li>',{ 'text':data.message, class:'message'}));
+		}
 	});
+
+	$('#mainForm').on('submit', function(e) { 
+		e.preventDefault();
+		var $inputBox = $('#messagetxt');
+		socket.emit('chatMessage', {'message':$inputBox.val()});
+
+		$inputBox.val('');
+	});
+
+	$('#messagetxt').on('keydown', function(e){
+		var messageLength = $(this).val().length;
+		if(messageLength > 10){
+			
+			$('#infoBox').text('Max character limit reached : 50');
+			$('#infoBox').slideDown();
+			$('#infoBox').on('click',function(){
+				$(this).slideUp();
+			});
+			
+		}
+		else{
+			$('#infoBox').slideUp();
+
+		}
+
+	});
+
 });
 
