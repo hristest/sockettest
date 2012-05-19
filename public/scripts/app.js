@@ -2,7 +2,10 @@
 
 $(function(){
 
-	var socket = io.connect('http://localhost:8000');
+	var port = 8000;
+	var serverUrl = 'http://' + document.location.hostname;
+	// console.log(serverUrl);
+	var socket = io.connect(serverUrl);
 	var maxLimitReached = false;
 
 	$('#infoBox').hide();
@@ -11,7 +14,10 @@ $(function(){
 		var messageLength = data.message.length;
 
 		if(messageLength > 0 && messageLength < 50){
-			$('#messageList').prepend($('<li>',{ 'text':data.message, class:'message'}));
+			var $newMessageBox = $('<li>',{ 'text':data.message, class:'message'});
+			$newMessageBox.hide();
+			$('#messageList').prepend($newMessageBox);
+			$newMessageBox.fadeIn(200);
 		}
 	});
 
