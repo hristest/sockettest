@@ -14,22 +14,30 @@ $(function(){
 		var messageLength = data.message.length;
 
 		if(messageLength > 0 && messageLength < 50){
-			var $newMessageBox = $('<li>',{ 'text':data.message, class:'message'});
+			var displayMessage = data.name + ' : ' + data.message;
+			var $newMessageBox = $('<li>',{ 'text':displayMessage, class:'message'});
 			$newMessageBox.hide();
 			$('#messageList').prepend($newMessageBox);
 			$newMessageBox.fadeIn(200);
 		}
 	});
 
-	function formSubmit(e) { 
+	function chatformSubmit(e) { 
 		e.preventDefault();
 		var $inputBox = $('#messagetxt');
+
+		// message display
+		var $myMessageBox = $('<li>',{ 'text':$inputBox.val(), class:'message myMessage'});
+		$myMessageBox.hide();
+		$('#messageList').prepend($myMessageBox);
+		$myMessageBox.fadeIn(200);
+
 		socket.emit('chatMessage', {'message':$inputBox.val()});
 
 		$inputBox.val('');
 	}
 
-	$('#mainForm').on('submit', formSubmit);
+	$('#mainForm').on('submit', chatformSubmit);
 
 	
 
@@ -46,10 +54,14 @@ $(function(){
 			$('#mainForm').off();
 		}
 		else{
+			if(maxLimitReached) {
+				$('#mainForm').on('submit', chatformSubmit);
+			}
+			
 			maxLimitReached = false;
 			$('#submitbtn').removeClass('disabled');
 			$('#infoBox').slideUp();
-			$('#mainForm').on('submit', formSubmit);
+			
 		}
 
 	});
@@ -60,6 +72,16 @@ $(function(){
 		}
 
 	});
+
+	function nameformSubmit(e) { 
+		e.preventDefault();
+		var $inputBox = $('#nametxt');
+		socket.emit('setName', {'name':$inputBox.val()});
+		$('#nameBox').slideUp();
+		$('#chatBox').slideDown();
+	}
+
+	$('#nameForm').on('submit', nameformSubmit);
 
 });
 

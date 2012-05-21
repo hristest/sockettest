@@ -11,6 +11,18 @@ body{
 	margin:0px auto; padding:0px;
 }
 
+#nameBox{
+	font-size:22px;
+	font-family: 'Verdana';
+	border:1px solid #222;
+	padding:10px;
+}
+
+#chatBox{
+	margin:0px; padding:0px;
+	display:none;
+}
+
 #messageList{
 	list-style:none;
 	padding:5px; margin:5px;
@@ -30,6 +42,11 @@ body{
 .message:nth-child(odd){
 	background:#333;
 	color:#aaa;
+}
+
+#messageList .myMessage{
+	background:#DEDEDE;
+	color:#2D2D2D;
 }
 
 #wrap p{

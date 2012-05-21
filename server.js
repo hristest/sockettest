@@ -17,10 +17,19 @@ io = io.listen(server);
 server.listen(8000);
 
 //console.log(util.inspect(io.sockets));
-io.sockets.on('connection', function(socket){
+io.sockets.on('connection', function(client){
 
-	socket.on('chatMessage', function(data){
-		io.sockets.emit('chatMessage', {'message':data.message});
+	client.on('setName', function(data){
+		client.set('nickname', data.name, function(){
+			var nameMessage = data.name + ' is in the house.'
+			client.broadcast.emit('chatMessage', {'message': nameMessage, 'name': 'Admin'});
+		});
+	});
+
+	client.on('chatMessage', function(data){
+		client.get('nickname', function(err, name){
+			client.broadcast.emit('chatMessage', {'message':data.message, 'name': name});
+		});
 	});
 });
 
